@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">LoginandFindCity</string>
+    <string name="login">login</string>
+    <string name="please_enter_password">password</string>
+    <string name="please_enter_username">username</string>
+    <string-array name="cities">
+        <item>Budapest</item>
+        <item>Debrecen</item>
+        <item>Eger</item>
+        <item>Miskolc</item>
+        <item>Sopron</item>
+    </string-array>
+</resources>
