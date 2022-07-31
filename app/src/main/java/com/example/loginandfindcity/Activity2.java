@@ -14,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpRequest;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpResponse;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.HttpClient;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -25,6 +28,10 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Collections;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
 
 
 public class Activity2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -67,8 +74,22 @@ public class Activity2 extends AppCompatActivity implements AdapterView.OnItemSe
 
                     //TODO http request to the API, endpoint: https://wft-geo-db.p.rapidapi.com/v1
                     //TODO get the GPS coordinates from the json file
+                    String POSTS_API_URL = "http://geodb-free-service.wirefreethought.com/v1/geo/cities/51643";
+                    HttpClient client = HttpClient.newHttpClient();
+                    HttpRequest request = HttpRequest.newBuilder()
+                            .GET()
+                            .header("accept", "application/json")
+                            .uri(URI.create(POSTS_API_URL))
+                            .build();
+                    try{
+                        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-                  //  try {
+                    }
+                    catch (Exception e){
+                        System.out.println("Error occured");
+                    }
+
+                    //  try {
                     //    URL url = new URL("http://geodb-free-service.wirefreethought.com/v1/geo/cities/" + cityId);
                     //    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     //    urlConnection.connect();
